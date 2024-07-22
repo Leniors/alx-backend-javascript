@@ -1,5 +1,6 @@
-const displayMessage = (string) => {
-  console.log(string);
-};
-
-module.exports = displayMessage;
+const displayMessage = (message) => {
+    console.log(message);
+  };
+  
+  module.exports = displayMessage;
+  
