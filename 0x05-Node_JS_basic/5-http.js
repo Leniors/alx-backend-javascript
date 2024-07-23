@@ -57,7 +57,6 @@ const app = http.createServer(async (req, res) => {
         }
       });
     } catch (err) {
-      res.statusCode = 500;
       res.write(`Cannot load the database`);
     }
     res.end();
