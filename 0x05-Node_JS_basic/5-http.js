@@ -19,7 +19,7 @@ const readDatabase = (dbPath) => {
         const age = details[2];
 
         return { firstname, lastname, age, field };
-      }).filter(student => student.firstname); // Filter out invalid students
+      });
 
       resolve(students);
     });
@@ -58,12 +58,9 @@ const app = http.createServer(async (req, res) => {
       });
     } catch (err) {
       res.statusCode = 500;
-      res.write(`Cannot load the database: ${err.message}`);
+      res.write(`Cannot load the database`);
     }
     res.end();
-  } else {
-    res.statusCode = 404;
-    res.end('Not Found');
   }
 });
 
