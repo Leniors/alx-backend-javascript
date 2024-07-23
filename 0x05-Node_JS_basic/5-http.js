@@ -1,6 +1,5 @@
 const http = require('http');
 const fs = require('fs').promises;
-const countStudents = require('./3-read_file_async');
 
 const app = http.createServer(async (req, res) => {
     if (req.url === '/') {
