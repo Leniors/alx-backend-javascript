@@ -33,7 +33,7 @@ const app = http.createServer(async (req, res) => {
     res.setHeader('Content-Type', 'text/plain');
     res.end('Hello Holberton School!');
   } else if (req.url === '/students') {
-    const dbPath = process.argv[2];
+    const dbPath = process.argv[2]? process.argv[2]: 'database.csv';
     res.statusCode = 200;
     res.setHeader('Content-Type', 'text/plain');
     res.write('This is the list of our students\n');
