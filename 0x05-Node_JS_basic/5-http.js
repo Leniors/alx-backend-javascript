@@ -73,3 +73,6 @@ const PORT = 1245;
 app.listen(PORT, () => {
   console.log(`...`);
 });
+
+// Export the app variable
+module.exports = app;
