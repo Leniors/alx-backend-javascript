@@ -8,7 +8,7 @@ const app = http.createServer(async (req, res) => {
         res.end('Hello Holberton School!');
     }
     else if (req.url === '/students') {
-        path = process.argv[2];
+        const path = process.argv[2];
         res.statusCode = 200;
         res.setHeader('Content-Type', 'text/plain');
         res.write('This is the list of our students\n');
@@ -45,10 +45,6 @@ const app = http.createServer(async (req, res) => {
             res.write('Cannot load the database');
         }
         res.end();
-    }
-    else {
-        res.statusCode = 404;
-        res.end('Not Found');
     }
 });
 
