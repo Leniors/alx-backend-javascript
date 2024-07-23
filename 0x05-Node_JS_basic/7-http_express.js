@@ -9,7 +9,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/students', async (req, res) => {
-  const filePath = process.argv[2]? process.argv[2]: 'database.csv'; // Get the file path from command line arguments
+  const filePath = process.argv[2]? process.argv[2]: 'database.csv';
   res.set('Content-Type', 'text/plain');
   res.write('This is the list of our students\n');
 
