@@ -10,9 +10,15 @@ const readDatabase = (dbPath) => {
         return reject(err);
       }
 
-      const lines = data.trim().split('\n');
+      let lines = data.trim().split('\n');
+      lines = lines.slice(1);
       const students = lines.map((line) => {
-        const [firstname, lastname, age, field] = line.split(',');
+        const details = line.split(',');
+        const field = (details[details.length - 1]).trim();
+        const firstname = details[0];
+        const lastname = details[1];
+        const age = details[2];
+
         return { firstname, lastname, age, field };
       }).filter(student => student.firstname); // Filter out invalid students
 
@@ -42,9 +48,15 @@ const app = http.createServer(async (req, res) => {
         fields[student.field].push(student.firstname);
       });
       res.write(`Number of students: ${students.length}\n`);
-      for (const field in fields) {
-        res.write(`Number of students in ${field}: ${fields[field].length}. List: ${fields[field].join(', ')}\n`);
-      }
+
+      const fieldEntries = Object.entries(fields);
+      fieldEntries.forEach(([field, students], index) => {
+        const isLast = index === fieldEntries.length - 1;
+        res.write(`Number of students in ${field}: ${students.length}. List: ${students.join(', ')}`);
+        if (!isLast) {
+          res.write('\n');
+        }
+      });
     } catch (err) {
       res.statusCode = 500;
       res.write(`Cannot load the database: ${err.message}`);
@@ -59,7 +71,7 @@ const app = http.createServer(async (req, res) => {
 // Make the server listen on port 1245
 const PORT = 1245;
 app.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}/`);
+  console.log(`...`);
 });
 
 // Export the app variable
